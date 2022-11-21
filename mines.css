@@ -1,0 +1,50 @@
+.grid-container {
+    display: grid;
+    width: 180px;
+    margin: 50px;
+    padding: 5px;
+    grid-template-columns: repeat(9, 20px);
+    grid-template-rows: 40px repeat(9, 20px);
+    ;
+    align-content: center;
+    row-gap: 0px;
+    column-gap:0px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    background-color: rgb(220, 220, 220);
+}
+
+.flagInfo {
+    grid-column: 1 / 4;
+    background-color: rgb(220, 220, 220);
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.startBtn {
+    grid-column: 7 / 10;
+    margin-bottom: 5px;
+    box-shadow: 1px 2px;
+}
+
+.button {
+    text-align: center;
+    border-style: solid;
+    border-color: #b8b8b8;
+    box-shadow: 1px 2px;
+}
+
+.displayBox {
+    height: 16px;
+    width: 44px;
+    background-color: whitesmoke;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.timer {
+    grid-column: 4 / 7;
+    grid-row: 1 / 1;
+}

@@ -44,31 +44,17 @@ function setClueboxes() {
     }
 }
 
-function incrementAround(row, column) {
-    if(row > 0 && column > 0){
-        ++playGrid[row - 1][column - 1]
-    }
-    if(row > 0) {
-        ++playGrid[row - 1][column]
-    }
-    if(row > 0 && column < 8) {
-        ++playGrid[row - 1][column + 1]
-    }
-    if(column < 8) {
-        ++playGrid[row][column + 1]
-    }
-    if(row < 8 && column < 8) {
-        ++playGrid[row + 1][column + 1]
-    }
-    if(row < 8) {
-        ++playGrid[row + 1][column]
-    }
-    if(row < 8 && column > 0) {
-        ++playGrid[row + 1][column - 1]
-    }
-    if(column > 0) {
-        ++playGrid[row][column - 1]
-    }
+function incrementAround(row, col) {
+    for (let i = -1 ; i <= 1; ++i) {
+        for (let j = -1; j <= 1; ++j) {
+            if (i == 0 && j == 0) {
+                continue
+            }
+            if (row + i >= 0 && row + i <= 8 && col + j >= 0 && col + j <= 8) {
+                ++playGrid[row + i][col + j]
+            }
+        }
+    }       
 }
 
 function startGame() {
@@ -117,31 +103,17 @@ function revealButton(id) {
 
 function revealAround(id) {
     let row = Number(id[0])
-    let column = Number(id[1])
-    if(row > 0 && column > 0){
-        revealButton("" + (row - 1) + "" + (column - 1) + "")
-    }
-    if(row > 0) {
-        revealButton("" + (row - 1) + "" + column + "")
-    }
-    if(row > 0 && column < 8) {
-        revealButton("" + (row - 1) + "" + (column + 1) + "")
-    }
-    if(column < 8) {
-        revealButton("" + row + "" + (column + 1) + "")
-    }
-    if(row < 8 && column < 8) {
-        revealButton("" + (row + 1) + "" + (column + 1) + "")
-    }
-    if(row < 8) {
-        revealButton("" + (row + 1) + "" + column + "")
-    }
-    if(row < 8 && column > 0) {
-        revealButton("" + (row + 1) + "" + (column - 1) + "")
-    }
-    if(column > 0) {
-        revealButton("" + row + "" + (column - 1) + "")
-    }
+    let col = Number(id[1])
+    for (let i = -1 ; i <= 1; ++i) {
+        for (let j = -1; j <= 1; ++j) {
+            if (i == 0 && j == 0) {
+                continue
+            }
+            if (row + i >= 0 && row + i <= 8 && col + j >= 0 && col + j <= 8) {
+                revealButton("" + (row + i) + "" + (col + j) + "")
+            }
+        }
+    }   
 }
 
 function revealMines() {
@@ -157,7 +129,6 @@ function revealMines() {
 
 document.getElementById("minefield").addEventListener('contextmenu', (event) => {
     event.preventDefault()
-    console.log(event.target.id)
     toggleFlag(event.target.id)
 })
 
